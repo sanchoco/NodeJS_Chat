@@ -31,6 +31,10 @@
 				socket.on('comeOn' + room, (comeOn) => {
 					$('#chatList').append(`<div style="color:blue;">${comeOn}</div>`);
 				});
+				/* 누군가 퇴장 */
+				socket.on('getOut'+ room, (data)=>{
+					$('#chatList').append(`<div style="color:gray;">${data}</div>`)
+				});
 			});
 
 			function msg_send() {
@@ -49,7 +53,9 @@
 	<body>
 		<h1>시크릿 채팅방 <span id="room" style="font-size: large;"></span></h1>
 
-		<div id="chatList"></div>
+		<div id="chatList">
+
+		</div>
 
 		<div id="sendMessage" style="position: fixed; bottom: 5%;">
 			<input type="text" id="msg" onKeyPress="if( event.keyCode==13 ){msg_send();}" />
