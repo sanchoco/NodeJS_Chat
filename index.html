@@ -18,6 +18,7 @@
 			const nickname = prompt('닉네임을 알려주세요.');
 			const room = prompt('입장할 방의 코드를 적어주세요.');
 			if (!(nickname && room)) {
+				alert('다시 입력해주세요.')
 				window.location.reload();
 			}
 			socket.emit('hihi', nickname, room);
@@ -30,10 +31,6 @@
 				/* 누군가 입장 */
 				socket.on('comeOn' + room, (comeOn) => {
 					$('#chatList').append(`<div style="color:blue;">${comeOn}</div>`);
-				});
-				/* 누군가 퇴장 */
-				socket.on('getOut'+ room, (data)=>{
-					$('#chatList').append(`<div style="color:gray;">${data}</div>`)
 				});
 			});
 
